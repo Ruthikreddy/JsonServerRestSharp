@@ -24,11 +24,6 @@
       "name": "Ishan",
       "salary": 120000,
       "id": 5
-    },
-    {
-      "name": "CounterNile",
-      "salary": "500000",
-      "id": 6
     }
   ]
 }
