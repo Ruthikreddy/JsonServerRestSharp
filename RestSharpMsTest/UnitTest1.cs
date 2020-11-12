@@ -82,5 +82,26 @@ namespace RestSharpMsTest
             });
 
         }
+        /// <summary>
+        /// Givens the employee on update should return updated employee. UC4
+        /// </summary>
+        [TestMethod]
+        public void GivenEmployee_OnUpdate_ShouldReturnUpdatedEmployee()
+        {
+            //making a request for a particular employee to be updated
+            RestRequest request = new RestRequest("employees/5", Method.PUT);
+            JsonObject jobject = new JsonObject();
+            jobject.Add("name", "Ishan");
+            jobject.Add("salary",120000);
+            request.AddParameter("application/json", jobject, ParameterType.RequestBody);
+            IRestResponse response = client.Execute(request);
+            Assert.AreEqual(response.StatusCode,HttpStatusCode.OK);
+            //deserializing content added in json file
+            Employee dataResponse = JsonConvert.DeserializeObject<Employee>(response.Content);
+            //asserting for salary
+            Assert.AreEqual(dataResponse.salary, "120000");
+            //writing content without deserializing from resopnse. 
+            Console.WriteLine(response.Content);
+        }
     }
 }
