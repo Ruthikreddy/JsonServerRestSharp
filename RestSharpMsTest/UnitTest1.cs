@@ -41,7 +41,7 @@ namespace RestSharpMsTest
             //gets the irest response from getemployee list method
             IRestResponse response = getEmployeeList();
             //assert for checking status code of get
-            Assert.AreEqual(response.StatusCode,HttpStatusCode.OK);
+            Assert.AreEqual(response.StatusCode, HttpStatusCode.OK);
             //adding the data into list from irestresponse by using deserializing.
             List<Employee> dataResponse = JsonConvert.DeserializeObject<List<Employee>>(response.Content);
             //printing out the content for list of employee
@@ -58,23 +58,29 @@ namespace RestSharpMsTest
         [TestMethod]
         public void givenEmployee_OnPost_ShouldReturnAddedEmployee()
         {
-            //adding request to post(add) data
-            RestRequest request = new RestRequest("/employees", Method.POST);
-            //jObject for adding data for name and salary, id auto increments
-            JsonObject jObject = new JsonObject();
-            jObject.Add("name", "Suryakumar");
-            jObject.Add("salary", "200000");
-            //as parameters are passed as body hence "request body" call is made, in parameter type
-            request.AddParameter("application/json", jObject, ParameterType.RequestBody);
-            IRestResponse response = client.Execute(request);
-            //assert
-            //code will be 201 for posting data
-            Assert.AreEqual(response.StatusCode, HttpStatusCode.Created);
-            Employee dataResponse = JsonConvert.DeserializeObject<Employee>(response.Content);
-            Assert.AreEqual("Suryakumar", dataResponse.name);
-            Assert.AreEqual("200000", dataResponse.salary);
-            Console.WriteLine(response.Content);
-        }
+            //adding multiple employees to table
+            List<Employee> EmployeeList = new List<Employee>();
+            EmployeeList.Add(new Employee { name = "Ishan", salary = "40000" });
+            EmployeeList.Add(new Employee { name = "CounterNile", salary = "500000" });
+            EmployeeList.ForEach(employeeData =>
+            {
+                //adding request to post(add) data
+                RestRequest request = new RestRequest("/employees", Method.POST);
+                JsonObject jObject = new JsonObject();
+                jObject.Add("name", employeeData.name);
+                jObject.Add("salary", employeeData.salary);
+                //as parameters are passed as body hence "request body" call is made, in parameter type
+                request.AddParameter("application/json", jObject, ParameterType.RequestBody);
+                IRestResponse response = client.Execute(request);
+                //assert
+                //code will be 201 for posting data
+                Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.Created);
+                //derserializing object for assert and checking test case
+                Employee dataResponse = JsonConvert.DeserializeObject<Employee>(response.Content);
+                Assert.AreEqual(employeeData.name, dataResponse.name);
+                Console.WriteLine(response.Content);
+            });
 
+        }
     }
 }
