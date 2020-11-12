@@ -74,7 +74,7 @@ namespace RestSharpMsTest
                 IRestResponse response = client.Execute(request);
                 //assert
                 //code will be 201 for posting data
-                Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.Created);
+                Assert.AreEqual(response.StatusCode,HttpStatusCode.Created);
                 //derserializing object for assert and checking test case
                 Employee dataResponse = JsonConvert.DeserializeObject<Employee>(response.Content);
                 Assert.AreEqual(employeeData.name, dataResponse.name);
@@ -102,6 +102,17 @@ namespace RestSharpMsTest
             Assert.AreEqual(dataResponse.salary, "120000");
             //writing content without deserializing from resopnse. 
             Console.WriteLine(response.Content);
+        }
+        [TestMethod]
+        public void GivenEmployee_OnDelete_ShouldReturnSuccessStatus()
+        {
+            //request for deleting elements from json 
+            RestRequest request = new RestRequest("employees/6", Method.DELETE);
+            //executing request using rest client
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+            //checking status codes.
+            Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.OK);
         }
     }
 }
