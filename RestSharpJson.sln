@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestSharpJson", "RestSharpJson.csproj", "{66A7ED9F-C57C-49C6-A905-418550F8EFDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestSharpMsTest", "..\RestSharpMsTest\RestSharpMsTest.csproj", "{5AEAD8EC-D40A-4309-8EDE-ACE4CD3F4D69}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66A7ED9F-C57C-49C6-A905-418550F8EFDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66A7ED9F-C57C-49C6-A905-418550F8EFDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66A7ED9F-C57C-49C6-A905-418550F8EFDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66A7ED9F-C57C-49C6-A905-418550F8EFDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AEAD8EC-D40A-4309-8EDE-ACE4CD3F4D69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AEAD8EC-D40A-4309-8EDE-ACE4CD3F4D69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AEAD8EC-D40A-4309-8EDE-ACE4CD3F4D69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AEAD8EC-D40A-4309-8EDE-ACE4CD3F4D69}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5E665F11-924A-44EC-A1B6-3FD16F537A15}
+	EndGlobalSection
+EndGlobal
