@@ -52,6 +52,29 @@ namespace RestSharpMsTest
             //assert for checking count of no of element in list to be equal to data in jsonserver table.
             Assert.AreEqual(4, dataResponse.Count);
         }
-     
+        /// <summary>
+        /// Givens the employee on post should return added employee. UC2
+        /// </summary>
+        [TestMethod]
+        public void givenEmployee_OnPost_ShouldReturnAddedEmployee()
+        {
+            //adding request to post(add) data
+            RestRequest request = new RestRequest("/employees", Method.POST);
+            //jObject for adding data for name and salary, id auto increments
+            JsonObject jObject = new JsonObject();
+            jObject.Add("name", "Suryakumar");
+            jObject.Add("salary", "200000");
+            //as parameters are passed as body hence "request body" call is made, in parameter type
+            request.AddParameter("application/json", jObject, ParameterType.RequestBody);
+            IRestResponse response = client.Execute(request);
+            //assert
+            //code will be 201 for posting data
+            Assert.AreEqual(response.StatusCode, HttpStatusCode.Created);
+            Employee dataResponse = JsonConvert.DeserializeObject<Employee>(response.Content);
+            Assert.AreEqual("Suryakumar", dataResponse.name);
+            Assert.AreEqual("200000", dataResponse.salary);
+            Console.WriteLine(response.Content);
+        }
+
     }
 }
